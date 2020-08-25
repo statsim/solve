@@ -1,0 +1,67 @@
+<div>
+  <div class="block attributes">
+    <h2>Attributes</h2>
+    <div
+      class="attribute"
+      v-for="(a, ai) in model.attributes"
+    >
+      <label :for="'attribute-name-' + ai">Name:</label>
+      <input class="name" v-model="a.name" :id="'attribute-name-' + ai"></input>
+      <div class="minmax">
+        <div class="min">
+          <label :for="'attribute-min-'+ ai">Min:</label>
+          <input v-model="a.min" :id="'attribute-min-' + ai" type="number"></input>
+        </div>
+        <div class="max">
+          <label :for="'attribute-max-' + ai">Max:</label>
+          <input v-model="a.max" :id="'attribute-max-' + ai" type="number"></input>
+        </div>
+      </div>
+    </div>
+    <button @click="addAttrubute">+ Add attribute</button>
+  </div>
+  <div class="block variables">
+    <h2>Variables / Items</h2>
+    <div
+      class="variable"
+      v-for="(v, vi) in model.variables"
+    >
+      <label :for="'variable-name-' + vi">Name:</label>
+      <input class="name" v-model="v.name" :id="'variable-name-' + vi"></input>
+
+      <div v-for="(a, ai) in model.attributes">
+        <label :for="'variable-' + ai + '-'+ vi">{{a.name}}</label>
+        <input v-model="v.values[a.id]" :id="'variable-' + ai + '-' + vi" type="number"></input>
+      </div>
+
+      <div class="minmax">
+        <div class="min">
+          <label :for="'variable-min-'+ ai">Min:</label>
+          <input v-model="v.min" :id="'variable-min-' + vi" type="number"></input>
+        </div>
+        <div class="max">
+          <label :for="'variable-max-' + ai">Max:</label>
+          <input v-model="v.max" :id="'variable-max-' + vi" type="number"></input>
+        </div>
+      </div>
+
+    </div>
+    <button @click="addVariable">+ Add variable</button>
+  </div>
+  <div class="block solve" v-if="model.attributes.length && model.variables.length">
+    <h2>Optimize</h2>
+    <div class="optimization-params">
+      <label for="optimize-attribute">Choose optimized attribute:</label>
+      <select name="optimize-attribute" id="optimize-attribute" v-model="opTarget">
+        <option v-for="(a, ai) in model.attributes" :value="a.id">{{ a.name }}</option>
+      </select>
+      <label for="optimize-type">Choose optimization type:</label>
+      <select name="optimize-type" id="optimize-type" v-model="opType">
+        <option value="min">Minimize</option>
+        <option value="max">Maximize</option>
+      </select>
+    </div>
+    <button @click="solve">⏵ Solve</button>
+  </div>
+  <pre>{{ res }}</pre>
+</div>

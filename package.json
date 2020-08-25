@@ -1,0 +1,28 @@
+{
+  "name": "solve",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify src/main.js -t [ vueify ] -t [ babelify ] -g [ envify --NODE_ENV production ] | uglifyjs -cm > dist/bundle.js",
+    "build-dev": "browserify src/main.js -t [ vueify ] -o dist/bundle.js --debug",
+    "watch": "nodemon --watch src --ext vue,js,css,html --exec 'npm run build-dev'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babelify": "^10.0.0",
+    "envify": "^4.1.0",
+    "nodemon": "^2.0.4",
+    "uglify-es": "^3.3.10",
+    "vueify": "^9.4.1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "javascript-lp-solver": "^0.4.24",
+    "vue": "^2.6.12"
+  }
+}
