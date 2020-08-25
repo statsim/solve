@@ -1,10 +1,24 @@
 <div>
+  <div class="block intro">
+    <a href="https://statsim.com/">
+      <img src="https://camo.githubusercontent.com/02a23dc6b2e857a2371c59bc5c00195dabf6d692/68747470733a2f2f7374617473696d2e636f6d2f6170702f696d616765732f66617669636f6e2d39367839362e706e67">
+    </a>
+    <h1>Solve linear programming problems in the browser</h1>
+    <p>Find optimal values of <b>variables</b> (e.g. number of airplanes) given their <b>attributes</b> (e.g. capacity, number of people, cost), min/max constraints and optimization objective. Under the hood a linear programming solver finds the best solution of a system of linear equations. Using <b>StatSim Solve</b> you can solve linear programming problems online, just in your browser. Start with adding new attributes, set constrains if needed, add variables and fill their attributes. Example:</p>
+    <ul>
+      <li><a href="#berlin" @click="example('berlin')">Berlin Airlift transport problem</a></li>
+    </ul>
+  </div>
+  <div class="block description" v-if="description.length">
+    <p>{{ description }}</p>
+  </div>
   <div class="block attributes">
     <h2>Attributes</h2>
     <div
       class="attribute"
       v-for="(a, ai) in model.attributes"
     >
+      <button class="remove" @click="removeAttribute(ai)">✕</button>
       <label :for="'attribute-name-' + ai">Name:</label>
       <input class="name" v-model="a.name" :id="'attribute-name-' + ai"></input>
       <div class="minmax">
@@ -21,11 +35,12 @@
     <button @click="addAttrubute">+ Add attribute</button>
   </div>
   <div class="block variables">
-    <h2>Variables / Items</h2>
+    <h2>Variables</h2>
     <div
       class="variable"
       v-for="(v, vi) in model.variables"
     >
+      <button class="remove" @click="removeVariable(vi)">✕</button>
       <label :for="'variable-name-' + vi">Name:</label>
       <input class="name" v-model="v.name" :id="'variable-name-' + vi"></input>
 
@@ -44,24 +59,36 @@
           <input v-model="v.max" :id="'variable-max-' + vi" type="number"></input>
         </div>
       </div>
-
+      <input type="checkbox" :id="'variable-int' + vi" value="true" v-model="v.int"><label :for="'variable-int' + vi">Integer</label><br>
     </div>
     <button @click="addVariable">+ Add variable</button>
   </div>
   <div class="block solve" v-if="model.attributes.length && model.variables.length">
     <h2>Optimize</h2>
     <div class="optimization-params">
-      <label for="optimize-attribute">Choose optimized attribute:</label>
-      <select name="optimize-attribute" id="optimize-attribute" v-model="opTarget">
-        <option v-for="(a, ai) in model.attributes" :value="a.id">{{ a.name }}</option>
-      </select>
-      <label for="optimize-type">Choose optimization type:</label>
-      <select name="optimize-type" id="optimize-type" v-model="opType">
-        <option value="min">Minimize</option>
-        <option value="max">Maximize</option>
-      </select>
+      <div>
+        <label for="optimize-attribute" style="display: block">Choose optimized attribute:</label>
+        <select name="optimize-attribute" id="optimize-attribute" v-model="opTarget">
+          <option v-for="(a, ai) in model.attributes" :value="a.id">{{ a.name }}</option>
+        </select>
+      </div>
+      <div>
+        <label for="optimize-type" style="display: block">Choose optimization type:</label>
+        <select name="optimize-type" id="optimize-type" v-model="opType">
+          <option value="min">Minimize</option>
+          <option value="max">Maximize</option>
+        </select>
+      </div>
+      <pre v-if="res.length">{{ res }}</pre>
     </div>
     <button @click="solve">⏵ Solve</button>
   </div>
-  <pre>{{ res }}</pre>
+  <div class="block" v-if="res.length">
+    <pre>{{ lpmodel }}</pre>
+  </div>
+  <div class="block">
+    <small>
+      LP solver and example problem: <a href="https://github.com/JWally/jsLPSolver">jsLPSolver</a><br>
+    </small>
+  </div>
 </div>

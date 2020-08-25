@@ -1,21 +1,31 @@
 body {
   padding: 0;
+  margin: 0;
   font-family: sans-serif;
+}
+
+h1 {
+  font-weight: 200;
+  font-size: 28px;
 }
 
 h2 {
   font-weight: 200;
   font-size: 22px;
+  margin-top: 10px;
   margin-bottom: 10px;
+}
+
+small {
+  font-size: 10px;
 }
 
 label {
   font-size: 10px;
-  display: block;
   margin-top: 10px;
 }
 
-input {
+input:not([type='checkbox']) {
   height: 18px;
   width: calc(100% - 10px);
   font-size: 14px;
@@ -27,7 +37,7 @@ input.name {
 
 .block {
   margin: 0;
-  padding: 10px;
+  padding: 15px;
 }
 
 .block button {
@@ -42,20 +52,63 @@ input.name {
   cursor: pointer;
 }
 
+select {
+  width: 230px;
+  height: 28px;
+}
+
 .block button:hover {
   background-color: #00000039;
 }
 
+.intro img {
+  width: 40px;
+  height: 40px;
+}
+
+.intro p {
+  font-size: 15px;
+  width: 75%;
+}
+
+.intro li {
+  font-size: 12px;
+}
+
+
+.description p {
+  font-size: 12px;
+  width: 75%;
+  font-style: italic;
+}
+
 .attributes {
-  background-color: #E05263;
+  background-color: #4D6BBF;
 }
 
 .variables {
   background-color: #9ED769;
 }
 
-.solve {
+.attributes h2, .variables h2 {
+  color: white;
+}
+
+.solve, .description {
   background-color: #E2ECEF;
+}
+
+.solve button {
+  background: #92c166;
+}
+
+.solve button:hover {
+  background: #7eaa54;
+}
+
+.solve pre {
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .minmax {
@@ -69,6 +122,7 @@ input.name {
 }
 
 .attribute, .variable {
+  position: relative;
   background-color: white;
   border-radius: 5px;
   box-shadow: 6px 10px 25px rgba(0, 0, 0, .05);
@@ -76,6 +130,16 @@ input.name {
   padding: 10px 15px 15px 15px;
   margin: 0 10px 10px 0;
   width: 200px;
+}
+
+.block button.remove {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  color: #bdbdbd;
 }
 
 .optimization-params {
