@@ -4,7 +4,7 @@
       <img src="https://camo.githubusercontent.com/02a23dc6b2e857a2371c59bc5c00195dabf6d692/68747470733a2f2f7374617473696d2e636f6d2f6170702f696d616765732f66617669636f6e2d39367839362e706e67">
     </a>
     <h1>Solve linear programming problems in the browser</h1>
-    <p>Find optimal values of <b>variables</b> (e.g. number of airplanes) given their <b>attributes</b> (e.g. capacity, number of people, cost), min/max constraints and optimization objective. Under the hood a linear programming solver finds the best solution of a system of linear equations. Using <b>StatSim Solve</b> you can solve linear programming problems online, just in your browser. Start with adding new attributes, set constrains if needed, add variables and fill their attributes. Example:</p>
+    <p>Find optimal values of variables based on their attributes, constraints and optimization objective. Under the hood a linear programming solver finds a solution of a system of linear equations. With <b>StatSim Solve</b> you can solve linear programming problems online without writing code. Examples:</p>
     <ul>
       <li><a href="#berlin" @click="example('berlin')">Berlin Airlift transport problem</a></li>
     </ul>
@@ -81,7 +81,7 @@
       </div>
       <pre v-if="res.length">{{ res }}</pre>
     </div>
-    <button @click="solve">⏵ Solve</button>
+    <button @click="solve">&#9656; Solve</button>
   </div>
   <div class="block" v-if="res.length">
     <pre>{{ lpmodel }}</pre>

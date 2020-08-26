@@ -5,13 +5,13 @@ body {
 }
 
 h1 {
-  font-weight: 200;
-  font-size: 28px;
+  font-weight: 400;
+  font-size: 26px;
 }
 
 h2 {
   font-weight: 200;
-  font-size: 22px;
+  font-size: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -36,7 +36,6 @@ input.name {
 }
 
 .block {
-  margin: 0;
   padding: 15px;
 }
 
@@ -67,27 +66,30 @@ select {
 }
 
 .intro p {
-  font-size: 15px;
+  font-size: 18px;
+  font-weight: 200;
   width: 75%;
 }
 
 .intro li {
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 
 .description p {
   font-size: 12px;
   width: 75%;
-  font-style: italic;
 }
 
 .attributes {
   background-color: #4D6BBF;
+  /* background: linear-gradient(135deg, rgb(69, 108, 219) 0%, rgb(85, 175, 255) 100%); */
 }
 
 .variables {
-  background-color: #9ED769;
+  background-color: #95D559;
+  /* background: linear-gradient(135deg, rgb(105, 211, 105) 0%, rgb(179, 237, 121) 100%); */
 }
 
 .attributes h2, .variables h2 {
@@ -96,14 +98,15 @@ select {
 
 .solve, .description {
   background-color: #E2ECEF;
+  background: linear-gradient(135deg, rgb(228, 235, 251) 0%, rgb(228, 255, 236) 100%);
 }
 
 .solve button {
-  background: #92c166;
+  background: #74c355;
 }
 
 .solve button:hover {
-  background: #7eaa54;
+  background: #65b247;
 }
 
 .solve pre {
@@ -144,4 +147,25 @@ select {
 
 .optimization-params {
   margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 768px) {
+  .intro p, .description p {
+    width: 100%;
+  }
+
+  .attribute, .variable {
+    display: block;
+    width: initial;
+  }
+
+  .block button {
+    height: 45px;
+    font-size: 16px;
+  }
+
+  input:not([type="checkbox"]) {
+    height: 24px;
+    font-size: 16px;
+  }
 }

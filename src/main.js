@@ -7,5 +7,5 @@ const vm = new Vue({
 })
 
 if (!vm) {
-  throw new Error('Browser: Where the fuck is Vue?')
+  throw new Error('Browser: Where is Vue?')
 }
